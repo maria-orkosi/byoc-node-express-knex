@@ -17,7 +17,9 @@ app.get('/api/notes', async (_req, res) => {
 });
 
 app.post('/api/notes', async (req, res) => {
-  const [row] = await knex('notes').insert({ body: String(req.body.body || '') }).returning('*');
+  const [row] = await knex('notes')
+    .insert({ body: String(req.body.body || '') })
+    .returning('*');
   res.status(201).json(row);
 });
 
